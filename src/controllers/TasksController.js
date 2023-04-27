@@ -54,11 +54,12 @@ exports.updateTaskStatus = (req, res) => {
     let id = req.params.id;
     let status = req.params.status;
     let Query = { _id: id }
-    let reqBody = { status: status }
+    let reqBody = { Status: status }
 
     TasksModel.updateOne(Query, reqBody)
-        .then((result) => {
-            console.log(result.acknowledged) // <-- print the value of acknowledged to the console
+        .then((result,err) => {
+            console.log(result.acknowledged)
+            console.log(err)
             if (result.acknowledged) {
                 res.status(200).json({ status: "Success", data: result });
             } else {
@@ -68,27 +69,10 @@ exports.updateTaskStatus = (req, res) => {
         .catch((err) => {
             res.status(400).json({ status: "Fail", data: err });
         });
+
+    // console.log(reqBody , Query)
+    //
+    // TasksModel.findOneAndUpdate(Query, {...reqBody}, { new: true }).exec()
+    //     .then(updatedUser => console.log(updatedUser))
+    //     .catch(err => console.log(err));
 }
-
-
-
-// exports.updateTaskStatus = (req, res) => {
-//     let id = req.params.id;
-//     let status = req.params.status === 'true'; // Convert status to boolean
-//     let query = { _id: id };
-//     let update = { $set: { status: status } }; // Update status field with new value
-//
-//     TasksModel.updateOne(query, update)
-//         .then((result) => {
-//             console.log(result.acknowledged)
-//
-//             if (result.acknowledged) {
-//                 res.status(200).json({ status: "Success", data: result });
-//             } else {
-//                 res.status(400).json({ status: "Fail", message: "Operation not acknowledged" });
-//             }
-//         })
-//         .catch((err) => {
-//             res.status(400).json({ status: "Fail", data: err });
-//         });
-// };
