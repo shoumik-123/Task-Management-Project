@@ -11,7 +11,8 @@ import LoginPage from "./pages/Login-Page";
 import RegistrationPage from "./pages/Registration-Page";
 import Page404 from "./pages/Page-404";
 import ForgetPasswordPage from "./pages/ForgetPassword-Page";
-import FullScreenLoader from "./components/MasterLayout/FullScreen-Loader";
+import MasterLayout from "./components/MasterLayout/Master-Layout";
+
 
 function App() {
   return (
