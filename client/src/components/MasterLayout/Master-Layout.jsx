@@ -5,7 +5,7 @@ import {AiOutlineCheckCircle, AiOutlineEdit, AiOutlineLogout, AiOutlineMenuUnfol
 import {BsHourglass, BsListNested} from "react-icons/bs";
 import logo from "../../assets/images/logo.svg";
 import {MdOutlineCancelPresentation, RiDashboardLine} from "react-icons/all";
-import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
+// import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
 
 
 
@@ -14,7 +14,7 @@ const MasterLayout = (props) => {
     let contentRef,sideNavRef=useRef();
 
     const onLogout=()=>{
-        removeSessions();
+
     }
 
     const MenuBarClickHandler = () => {
