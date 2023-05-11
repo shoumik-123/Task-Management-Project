@@ -1,112 +1,115 @@
-import React, {Fragment, useRef} from "react";
-import {Container,Navbar} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import {AiOutlineCheckCircle, AiOutlineEdit, AiOutlineLogout, AiOutlineMenuUnfold, AiOutlineUser} from "react-icons/ai";
-import {BsHourglass, BsListNested} from "react-icons/bs";
-import logo from "../../assets/images/logo.svg";
-import {MdOutlineCancelPresentation, RiDashboardLine} from "react-icons/all";
-// import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
+import React, { useState, useEffect } from "react";
+import "../../assets/css/sideNav.css";
+import "../../assets/css/style.css";
+import {Button, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {FaCube, FaHome, FaSearch, FaSignOutAlt} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 
+const SideNav = () => {
 
-const MasterLayout = (props) => {
+    const [searchValue, setSearchValue] = useState("");
 
-    let contentRef,sideNavRef=useRef();
-
-    const onLogout=()=>{
-
+    function handleSearchChange(event) {
+        setSearchValue(event.target.value);
     }
 
-    const MenuBarClickHandler = () => {
-        let sideNav = sideNavRef;
-        let content = contentRef;
-        if (sideNav.classList.contains("side-nav-open")) {
-            sideNav.classList.add("side-nav-close");
-            sideNav.classList.remove("side-nav-open");
-            content.classList.add("content-expand");
-            content.classList.remove("content");
-        } else {
-            sideNav.classList.remove("side-nav-close");
-            sideNav.classList.add("side-nav-open");
-            content.classList.remove("content-expand");
-            content.classList.add("content");
+
+
+
+    const [showNav, setShowNav] = useState(false);
+
+    const openNav = () => {
+        setShowNav(true);
+    };
+
+    const closeNav = () => {
+        setShowNav(false);
+    };
+
+    const handleEscKey = (e) => {
+        if (e.key === "Escape") {
+            closeNav();
         }
     };
 
+    useEffect(() => {
+        if (showNav) {
+            document.addEventListener("keydown", handleEscKey);
+        }
+        return () => {
+            document.removeEventListener("keydown", handleEscKey);
+        };
+    }, [showNav]);
 
+    let navCoverStyle = { width: showNav ? "100%" : "0" };
+    let sideNavStyle = { width: showNav ? "250px" : "0" };
 
     return (
-        <Fragment>
-            <Navbar  className="fixed-top px-0 shadow-sm ">
-                <Container fluid={true}>
-                    <Navbar.Brand >
-                        <a className="icon-nav m-0 h5" onClick={MenuBarClickHandler}><AiOutlineMenuUnfold/></a>
-                        <img className="nav-logo mx-2"  src={logo} alt="logo"/>
-                    </Navbar.Brand>
 
-                    <div className="float-right h-auto d-flex">
-                        <div className="user-dropdown">
-                            <img className="icon-nav-img icon-nav" src={getUserDetails()['photo']} alt=""/>
-                            <div className="user-dropdown-content ">
-                                <div className="mt-4 text-center">
-                                    <img className="icon-nav-img" src={getUserDetails()['photo']} alt=""/>
-                                    <h6>{getUserDetails()['firstName']}</h6>
-                                    <hr className="user-dropdown-divider  p-0"/>
-                                </div>
-                                <NavLink to="/Profile" className="side-bar-item">
-                                    <AiOutlineUser className="side-bar-item-icon" />
-                                    <span className="side-bar-item-caption">Profile</span>
-                                </NavLink>
-                                <a onClick={onLogout}  className="side-bar-item">
-                                    <AiOutlineLogout className="side-bar-item-icon" />
-                                    <span className="side-bar-item-caption">Logout</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-            </Navbar>
+        <>
+            <div>
+                <Navbar bg="dark" variant="dark" expand="xl">
+                    <Navbar.Brand href="#"><FaCube />Brand<b>Name</b></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarCollapse" />
+                    <Navbar.Collapse id="navbarCollapse">
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search here..." className="mr-sm-2" />
+                            <Button variant="outline-light"><FaSearch /></Button>
+                        </Form>
+                        <Nav className="ml-auto">
+                            <Link to="/" active><FaHome />Home</Link>
+                            <Link to="/" active><FaHome />Home</Link>
+                            <Link to="/" active><FaHome />Home</Link>
+                            <Link to="/" active><FaHome />Home</Link>
+                            <Link to="/" active><FaHome />Home</Link>
+                            <Link to="/" active><FaHome />Home</Link>
+                            {/*<Nav.Link href="#"><FaGears />Projects</Nav.Link>*/}
+                            {/*<Nav.Link href="#"><FaUsers />Team</Nav.Link>*/}
+                            {/*<Nav.Link href="#"><FaPieChart />Reports</Nav.Link>*/}
+                            {/*<Nav.Link href="#"><FaBriefcase />Careers</Nav.Link>*/}
+                            {/*<Nav.Link href="#"><FaEnvelope />Messages</Nav.Link>*/}
+                            {/*<Nav.Link href="#"><FaBell />Notifications</Nav.Link>*/}
 
-            <div ref={(div) =>{sideNavRef=div}} className="side-nav-open">
 
-                <NavLink   className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/"  end>
-                    <RiDashboardLine className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Dashboard</span>
-                </NavLink>
-
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/Create" >
-                    <AiOutlineEdit className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Create New</span>
-                </NavLink>
-
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/All" >
-                    <BsListNested className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">New Task</span>
-                </NavLink>
-
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/Progress" >
-                    <BsHourglass className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">In Progress</span>
-                </NavLink>
-
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/Completed" >
-                    <AiOutlineCheckCircle className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Completed</span>
-                </NavLink>
-
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/Canceled" >
-                    <MdOutlineCancelPresentation className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Canceled</span>
-                </NavLink>
+                            <NavDropdown title={<div><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" className="avatar" alt="Avatar" />Antonio Moreno<b className="caret"></b></div>} id="basic-nav-dropdown">
+                                {/*<NavDropdown.Item href="#"><FaUserO />Profile</NavDropdown.Item>*/}
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#"><FaSignOutAlt />Logout</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
 
             </div>
 
-            <div ref={(div) => contentRef = div} className="content">
-                {props.children}
-            </div>
 
-        </Fragment>
+
+
+
+
+
+
+      <span onClick={openNav} className="open-nav">
+        &#9776; open
+      </span>
+            <div
+                onClick={closeNav}
+                className="nav-cover"
+                style={navCoverStyle}
+            ></div>
+            <div name="side-nav" className="side-nav" style={sideNavStyle}>
+                <a href="#" onClick={closeNav} className="close-nav">
+                    &times;
+                </a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+        </>
     );
 };
 
-export default MasterLayout;
+export default SideNav;
+
