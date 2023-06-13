@@ -22,7 +22,7 @@ function App() {
               <Routes>
 
                   <Route exact path="/" element={<DashboardPage/>}/>
-                  <Route exact path="/Create" element={<CreatePage/>}/>
+                  <Route exact path="/create" element={<CreatePage/>}/>
                   <Route exact path="/All" element={<NewPage/>}/>
                   <Route exact path="/Progress" element={<ProgressPage/>}/>
                   <Route exact path="/Completed" element={<CompletedPage/>}/>

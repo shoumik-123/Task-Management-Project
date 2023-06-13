@@ -30,8 +30,6 @@ const routes = [
 
 const MasterLayout = ({children}) => {
 
-
-
     // sidebar
     const sidebarVariants = {
         open: { x: 1 },
