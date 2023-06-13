@@ -1,115 +1,157 @@
-import React, { useState, useEffect } from "react";
-import "../../assets/css/sideNav.css";
-import "../../assets/css/style.css";
-import {Button, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
-import {FaCube, FaHome, FaSearch, FaSignOutAlt} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import {AnimatePresence, motion} from 'framer-motion';
+import { FaBars, FaCheckCircle, FaHouseDamage, FaPen, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
+import { NavLink ,Link } from 'react-router-dom';
+import '../../assets/css/sideBar.css';
+import '../../assets/css/navbar.css'
+
+const routes = [
+    {
+        path: '/',
+        name: 'Dashboard',
+        icon: FaHouseDamage,
+    },
+    {
+        path: '/create',
+        name: 'Create',
+        icon: FaPen,
+    },
+    {
+        path: '/complete',
+        name: 'Complete',
+        icon: FaCheckCircle,
+    },
+    {
+        path: '/cancel',
+        name: 'Cancel',
+        icon: FaRegTrashAlt,
+    },
+];
+
+const MasterLayout = ({children}) => {
 
 
-const SideNav = () => {
 
-    const [searchValue, setSearchValue] = useState("");
+    // sidebar
+    const sidebarVariants = {
+        open: { x: 0 },
+        closed: { x: '-100%' },
+    };
 
-    function handleSearchChange(event) {
-        setSearchValue(event.target.value);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const inputAnimation = {
+        hidden:{
+            width:"0",
+            padding:"0",
+            opacity:0,
+            transition:{
+                duration:0.15
+            }
+        }
+        ,
+        show:{
+            width: "140px",
+            padding: "5px 15px",
+            transition:{
+                duration:0.2
+            },
+            opacity: 1
+        }
     }
 
 
 
 
-    const [showNav, setShowNav] = useState(false);
-
-    const openNav = () => {
-        setShowNav(true);
+    //Navbar
+    const [isOpenNavbar, setIsOpenNavbar] = useState(false);
+    const toggleMenu = () => {
+        setIsOpenNavbar(!isOpenNavbar);
     };
-
-    const closeNav = () => {
-        setShowNav(false);
-    };
-
-    const handleEscKey = (e) => {
-        if (e.key === "Escape") {
-            closeNav();
-        }
-    };
-
-    useEffect(() => {
-        if (showNav) {
-            document.addEventListener("keydown", handleEscKey);
-        }
-        return () => {
-            document.removeEventListener("keydown", handleEscKey);
-        };
-    }, [showNav]);
-
-    let navCoverStyle = { width: showNav ? "100%" : "0" };
-    let sideNavStyle = { width: showNav ? "250px" : "0" };
 
     return (
+        <div>
+            <div className="main-container" style={{ width: isOpen ? '200px' : '30px' }}>
+                <motion.div
+                    className="sidebar"
+                    initial="closed"
+                    animate="open"
+                    variants={sidebarVariants}
+                >
+                    <div className="top-section">
+                        {isOpen && <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>}
 
-        <>
-            <div>
-                <Navbar bg="dark" variant="dark" expand="xl">
-                    <Navbar.Brand href="#"><FaCube />Brand<b>Name</b></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarCollapse" />
-                    <Navbar.Collapse id="navbarCollapse">
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search here..." className="mr-sm-2" />
-                            <Button variant="outline-light"><FaSearch /></Button>
-                        </Form>
-                        <Nav className="ml-auto">
-                            <Link to="/" active><FaHome />Home</Link>
-                            <Link to="/" active><FaHome />Home</Link>
-                            <Link to="/" active><FaHome />Home</Link>
-                            <Link to="/" active><FaHome />Home</Link>
-                            <Link to="/" active><FaHome />Home</Link>
-                            <Link to="/" active><FaHome />Home</Link>
-                            {/*<Nav.Link href="#"><FaGears />Projects</Nav.Link>*/}
-                            {/*<Nav.Link href="#"><FaUsers />Team</Nav.Link>*/}
-                            {/*<Nav.Link href="#"><FaPieChart />Reports</Nav.Link>*/}
-                            {/*<Nav.Link href="#"><FaBriefcase />Careers</Nav.Link>*/}
-                            {/*<Nav.Link href="#"><FaEnvelope />Messages</Nav.Link>*/}
-                            {/*<Nav.Link href="#"><FaBell />Notifications</Nav.Link>*/}
+                        <div>
+                            <FaBars onClick={toggle} />
+                        </div>
+                    </div>
+
+                    <div className="search-bar">
+                        <div className="search-icon">
+                            <FaSearch />
+                        </div>
+                        <AnimatePresence>
+                            {isOpen &&<motion.input initial="hidden" animate="show" exit="hidden" variants={inputAnimation} placeholder="Search" />}
+                        </AnimatePresence>
+
+                    </div>
+
+                    <section className="routes">
+                        {routes.map((route) => (
+                            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+                                <div className="icon">
+                                    <route.icon />
+                                </div>
+                                <AnimatePresence>
+                                    {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
+                                </AnimatePresence>
+
+                            </NavLink>
+                        ))}
+                    </section>
+
+                </motion.div>
 
 
-                            <NavDropdown title={<div><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" className="avatar" alt="Avatar" />Antonio Moreno<b className="caret"></b></div>} id="basic-nav-dropdown">
-                                {/*<NavDropdown.Item href="#"><FaUserO />Profile</NavDropdown.Item>*/}
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#"><FaSignOutAlt />Logout</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
+
+                <nav className="navbar">
+
+                    <div className="profile-menu">
+                        <button className="profile-menu-toggle" onClick={toggleMenu}>
+                            <img
+                                className="profile-menu-avatar"
+                                src="https://media.licdn.com/dms/image/C4E03AQHouDS3TNY96Q/profile-displayphoto-shrink_800_800/0/1622655546895?e=2147483647&v=beta&t=1LQHT03FVCrZ7c6RyCqc678C4vd6pSUbgjMBznklNiQ"
+                                alt="Profile Avatar"
+                            />
+                        </button>
+                        {isOpenNavbar && (
+                            <ul className="profile-menu-dropdown">
+                                <li>
+                                    <Link to="https://www.facebook.com/shoumik152/" target="_blank">Profile</Link>
+                                </li>
+                                <li>
+                                    <Link to="/settings">Settings</Link>
+                                </li>
+                                <li>
+                                    <Link to="/logout">Logout</Link>
+                                </li>
+                            </ul>
+                        )}
+                    </div>
+                </nav>
+
+
+                <main className="content">
+                    {children}
+                </main>
 
             </div>
-
-
-
-
-
-
-
-
-      <span onClick={openNav} className="open-nav">
-        &#9776; open
-      </span>
-            <div
-                onClick={closeNav}
-                className="nav-cover"
-                style={navCoverStyle}
-            ></div>
-            <div name="side-nav" className="side-nav" style={sideNavStyle}>
-                <a href="#" onClick={closeNav} className="close-nav">
-                    &times;
-                </a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
-            </div>
-        </>
+        </div>
     );
 };
 
-export default SideNav;
-
+export default MasterLayout;

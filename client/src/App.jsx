@@ -11,13 +11,16 @@ import LoginPage from "./pages/Login-Page";
 import RegistrationPage from "./pages/Registration-Page";
 import Page404 from "./pages/Page-404";
 import ForgetPasswordPage from "./pages/ForgetPassword-Page";
+import MasterLayout from "./components/MasterLayout/Master-Layout";
 
 
 function App() {
   return (
       <Fragment>
           <BrowserRouter>
+              <MasterLayout/>
               <Routes>
+
                   <Route exact path="/" element={<DashboardPage/>}/>
                   <Route exact path="/Create" element={<CreatePage/>}/>
                   <Route exact path="/All" element={<NewPage/>}/>

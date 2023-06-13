@@ -1,11 +1,10 @@
 import React from 'react';
-import MasterLayout from "../components/MasterLayout/Master-Layout";
-import SideNav from "../components/MasterLayout/Master-Layout";
 
 const DashboardPage = () => {
     return (
         <div>
-            <SideNav/>
+
+            <h1>Dashboard page</h1>
         </div>
     );
 };
