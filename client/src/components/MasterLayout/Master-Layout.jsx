@@ -34,11 +34,11 @@ const MasterLayout = ({children}) => {
 
     // sidebar
     const sidebarVariants = {
-        open: { x: 0 },
+        open: { x: 1 },
         closed: { x: '-100%' },
     };
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toggle = () => {
         setIsOpen(!isOpen);
