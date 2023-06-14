@@ -145,11 +145,14 @@ const MasterLayout = ({children}) => {
                 </nav>
 
 
-                <main className="content">
-                    {children}
-                </main>
 
             </div>
+
+
+            <main className="content">
+                {children}
+            </main>
+
         </div>
     );
 };
