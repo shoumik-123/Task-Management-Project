@@ -103,7 +103,7 @@ const MasterLayout = ({children}) => {
                             {routes.map((route) => (
                                 <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
                                     <div className="icon">
-                                        <route.icon />
+                                        <route.icon/>
                                     </div>
                                     <AnimatePresence>
                                         {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
