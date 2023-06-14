@@ -17,6 +17,8 @@
 
 .main-container{
     display: flex;
+    justify-content: space-between;
+
 }
 
 .top-section{

@@ -73,48 +73,50 @@ const MasterLayout = ({children}) => {
 
     return (
         <div>
-            <div className="main-container" style={{ width: isOpen ? '200px' : '30px' }}>
-                <motion.div
-                    className="sidebar"
-                    initial="closed"
-                    animate="open"
-                    variants={sidebarVariants}
-                >
-                    <div className="top-section">
-                        {isOpen && <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>}
+            <div className="main-container" style={{ width: isOpen }}>
+                <div>
+                    <motion.div
+                        className="sidebar"
+                        initial="closed"
+                        animate="open"
+                        variants={sidebarVariants}
+                    >
+                        <div className="top-section">
+                            {isOpen && <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>}
 
-                        <div>
-                            <FaBars onClick={toggle} />
+                            <div>
+                                <FaBars onClick={toggle} />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="search-bar">
-                        <div className="search-icon">
-                            <FaSearch />
+                        <div className="search-bar">
+                            <div className="search-icon">
+                                <FaSearch />
+                            </div>
+                            <AnimatePresence>
+                                {isOpen &&<motion.input initial="hidden" animate="show" exit="hidden" variants={inputAnimation} placeholder="Search" />}
+                            </AnimatePresence>
+
                         </div>
-                        <AnimatePresence>
-                            {isOpen &&<motion.input initial="hidden" animate="show" exit="hidden" variants={inputAnimation} placeholder="Search" />}
-                        </AnimatePresence>
 
-                    </div>
+                        <section className="routes">
+                            {routes.map((route) => (
+                                <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+                                    <div className="icon">
+                                        <route.icon />
+                                    </div>
+                                    <AnimatePresence>
+                                        {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
+                                    </AnimatePresence>
 
-                    <section className="routes">
-                        {routes.map((route) => (
-                            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
-                                <div className="icon">
-                                    <route.icon />
-                                </div>
-                                <AnimatePresence>
-                                    {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
-                                </AnimatePresence>
+                                </NavLink>
+                            ))}
+                        </section>
 
-                            </NavLink>
-                        ))}
-                    </section>
-
-                </motion.div>
+                    </motion.div>
 
 
+                </div>
 
                 <nav className="navbar">
 
