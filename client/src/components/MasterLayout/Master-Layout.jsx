@@ -117,6 +117,7 @@ const MasterLayout = ({children}) => {
 
 
 
+
                 <div>
                     <nav className="navbar">
 
@@ -143,11 +144,10 @@ const MasterLayout = ({children}) => {
                             )}
                         </div>
                     </nav>
-                    <div className="main">
-                        <main className="content">
-                            {children}
-                        </main>
-                    </div>
+
+                    <main className="content">
+                        {children}
+                    </main>
 
                 </div>
             </div>
