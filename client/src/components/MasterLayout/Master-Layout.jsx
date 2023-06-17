@@ -112,47 +112,45 @@ const MasterLayout = ({children}) => {
                                 </NavLink>
                             ))}
                         </section>
-
                     </motion.div>
-
-
                 </div>
 
-                <nav className="navbar">
 
-                    <div className="profile-menu">
-                        <button className="profile-menu-toggle" onClick={toggleMenu}>
-                            <img
-                                className="profile-menu-avatar"
-                                src="https://media.licdn.com/dms/image/C4E03AQHouDS3TNY96Q/profile-displayphoto-shrink_800_800/0/1622655546895?e=2147483647&v=beta&t=1LQHT03FVCrZ7c6RyCqc678C4vd6pSUbgjMBznklNiQ"
-                                alt="Profile Avatar"
-                            />
-                        </button>
-                        {isOpenNavbar && (
-                            <ul className="profile-menu-dropdown">
-                                <li>
-                                    <Link to="https://www.facebook.com/shoumik152/" target="_blank">Profile</Link>
-                                </li>
-                                <li>
-                                    <Link to="/settings">Settings</Link>
-                                </li>
-                                <li>
-                                    <Link to="/logout">Logout</Link>
-                                </li>
-                            </ul>
-                        )}
+
+                <div>
+                    <nav className="navbar">
+
+                        <div className="profile-menu">
+                            <button className="profile-menu-toggle" onClick={toggleMenu}>
+                                <img
+                                    className="profile-menu-avatar"
+                                    src="https://media.licdn.com/dms/image/C4E03AQHouDS3TNY96Q/profile-displayphoto-shrink_800_800/0/1622655546895?e=2147483647&v=beta&t=1LQHT03FVCrZ7c6RyCqc678C4vd6pSUbgjMBznklNiQ"
+                                    alt="Profile Avatar"
+                                />
+                            </button>
+                            {isOpenNavbar && (
+                                <ul className="profile-menu-dropdown">
+                                    <li>
+                                        <Link to="https://www.facebook.com/shoumik152/" target="_blank">Profile</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/settings">Settings</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/logout">Logout</Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+                    </nav>
+                    <div className="main">
+                        <main className="content">
+                            {children}
+                        </main>
                     </div>
-                </nav>
 
-
-
+                </div>
             </div>
-
-
-            <main className="content">
-                {children}
-            </main>
-
         </div>
     );
 };
