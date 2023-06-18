@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
-import { FaBars, FaCheckCircle, FaHouseDamage, FaPen, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
+import {
+    FaBars,
+    FaBatteryThreeQuarters,
+    FaCheckCircle,
+    FaHouseDamage,
+    FaPen, FaPenNib,
+    FaRegTrashAlt,
+    FaSearch
+} from 'react-icons/fa';
 import { NavLink ,Link } from 'react-router-dom';
 import '../../assets/css/sideBar.css';
 import '../../assets/css/navbar.css'
@@ -15,6 +23,17 @@ const routes = [
         path: '/create',
         name: 'Create',
         icon: FaPen,
+    },
+
+    {
+        path: '/All',
+        name: 'New',
+        icon: FaPenNib,
+    },
+    {
+        path: '/Progress',
+        name: 'Progress',
+        icon: FaBatteryThreeQuarters,
     },
     {
         path: '/complete',
