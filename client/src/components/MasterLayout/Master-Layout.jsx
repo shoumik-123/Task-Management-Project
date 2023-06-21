@@ -94,15 +94,9 @@ const MasterLayout = ({children}) => {
         <div>
             <div className="main-container" style={{ width: isOpen }}>
                 <div>
-                    <motion.div
-                        className="sidebar"
-                        initial="closed"
-                        animate="open"
-                        variants={sidebarVariants}
-                    >
+                    <motion.div className="sidebar" initial="closed" animate="open" variants={sidebarVariants}>
                         <div className="top-section">
                             {isOpen && <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>}
-
                             <div>
                                 <FaBars onClick={toggle} />
                             </div>
@@ -134,10 +128,7 @@ const MasterLayout = ({children}) => {
                     </motion.div>
                 </div>
 
-
-
-
-                <div>
+                <div className="sec">
                     <nav className="navbar">
 
                         <div className="profile-menu">
