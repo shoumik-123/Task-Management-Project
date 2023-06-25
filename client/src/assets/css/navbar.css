@@ -1,15 +1,13 @@
-/* Navbar styles */
+
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0.5rem;
     background-color: #555555;
     color: #fff;
     width: 100%;
     height: fit-content;
 }
-
-
 
 .profile-menu {
     position: relative;
@@ -21,6 +19,7 @@
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 7px;
 }
 
 .profile-menu-dropdown {
