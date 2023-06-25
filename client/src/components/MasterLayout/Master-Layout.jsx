@@ -90,68 +90,67 @@ const MasterLayout = ({children}) => {
     };
 
     return (
+
         <div>
-            <div>
-                <nav className="navbar">
-                    <div className="top-section">
-                        <div>
-                            <FaBars onClick={toggle} />
-                        </div>
-                        <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>
-
-                    </div>
-
-                    <div className="profile-menu">
-                        <button className="profile-menu-toggle" onClick={toggleMenu}>
-                            <img
-                                className="profile-menu-avatar"
-                                src="https://media.licdn.com/dms/image/C4E03AQHouDS3TNY96Q/profile-displayphoto-shrink_800_800/0/1622655546895?e=2147483647&v=beta&t=1LQHT03FVCrZ7c6RyCqc678C4vd6pSUbgjMBznklNiQ"
-                                alt="Profile Avatar"
-                            />
-                        </button>
-                        {isOpenNavbar && (
-                            <ul className="profile-menu-dropdown">
-                                <li>
-                                    <Link to="https://www.facebook.com/shoumik152/" target="_blank">Profile</Link>
-                                </li>
-                                <li>
-                                    <Link to="/settings">Settings</Link>
-                                </li>
-                                <li>
-                                    <Link to="/logout">Logout</Link>
-                                </li>
-                            </ul>
-                        )}
-                    </div>
-                </nav>
-
-
-                <div className="main-container" style={{ width: isOpen }}>
+            <nav className="navbar">
+                <div className="top-section">
                     <div>
-                        <motion.div className="sidebar" initial="closed" animate="open" variants={sidebarVariants}>
-
-
-                            <section className="routes">
-                                {routes.map((route) => (
-                                    <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
-                                        <div className="icon">
-                                            <route.icon/>
-                                        </div>
-                                        <AnimatePresence>
-                                            {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
-                                        </AnimatePresence>
-
-                                    </NavLink>
-                                ))}
-                            </section>
-                        </motion.div>
+                        <FaBars onClick={toggle} />
                     </div>
-
-                    <main className="content">
-                        {children}
-                    </main>
+                    <motion.h1 initial="hidden" animate="show" exit="hidden" variants={inputAnimation} className="logo">logo</motion.h1>
 
                 </div>
+
+                <div className="profile-menu">
+                    <button className="profile-menu-toggle" onClick={toggleMenu}>
+                        <img
+                            className="profile-menu-avatar"
+                            src="https://media.licdn.com/dms/image/C4E03AQHouDS3TNY96Q/profile-displayphoto-shrink_800_800/0/1622655546895?e=2147483647&v=beta&t=1LQHT03FVCrZ7c6RyCqc678C4vd6pSUbgjMBznklNiQ"
+                            alt="Profile Avatar"
+                        />
+                    </button>
+                    {isOpenNavbar && (
+                        <ul className="profile-menu-dropdown">
+                            <li>
+                                <Link to="https://www.facebook.com/shoumik152/" target="_blank">Profile</Link>
+                            </li>
+                            <li>
+                                <Link to="/settings">Settings</Link>
+                            </li>
+                            <li>
+                                <Link to="/logout">Logout</Link>
+                            </li>
+                        </ul>
+                    )}
+                </div>
+            </nav>
+
+
+            <div className="main-container" style={{ width: isOpen }}>
+                <div className="sidebar">
+                    <motion.div className="sidebar" initial="closed" animate="open" variants={sidebarVariants}>
+
+
+                        <section className="routes">
+                            {routes.map((route) => (
+                                <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+                                    <div className="icon">
+                                        <route.icon/>
+                                    </div>
+                                    <AnimatePresence>
+                                        {isOpen && <motion.div className="link-text" initial="hidden" animate="show" exit="hidden" variants={inputAnimation} >{route.name}</motion.div>}
+                                    </AnimatePresence>
+
+                                </NavLink>
+                            ))}
+                        </section>
+                    </motion.div>
+                </div>
+
+                <main className="content">
+                    {children}
+                </main>
+
             </div>
         </div>
     );
