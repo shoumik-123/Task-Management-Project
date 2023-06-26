@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {Fragment, lazy, Suspense} from 'react';
+import LazyLoader from "../components/MasterLayout/Lazy-Loader";
 
+const NotFound= lazy(()=>import("../components/NotFound/NotFound"));
 const Page404 = () => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <Suspense fallback={<LazyLoader/>}>
+                <NotFound/>
+            </Suspense>
+        </Fragment>
     );
 };
 

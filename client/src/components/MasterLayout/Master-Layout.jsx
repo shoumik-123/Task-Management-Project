@@ -8,7 +8,7 @@ import {
     FaPen, FaPenNib,
     FaRegTrashAlt
 } from 'react-icons/fa';
-import { NavLink ,Link } from 'react-router-dom';
+import {NavLink, Link, Outlet} from 'react-router-dom';
 import '../../assets/css/sideBar.css';
 import '../../assets/css/navbar.css'
 
@@ -25,12 +25,12 @@ const routes = [
     },
 
     {
-        path: '/All',
+        path: '/all',
         name: 'New',
         icon: FaPenNib,
     },
     {
-        path: '/Progress',
+        path: '/progress',
         name: 'Progress',
         icon: FaBatteryThreeQuarters,
     },
@@ -46,7 +46,7 @@ const routes = [
     },
 ];
 
-const MasterLayout = ({children}) => {
+const MasterLayout = () => {
 
     // sidebar
     const sidebarVariants = {
@@ -147,10 +147,9 @@ const MasterLayout = ({children}) => {
                     </motion.div>
                 </div>
 
-                <main className="content">
-                    {children}
-                </main>
-
+                <div className="content">
+                    <Outlet></Outlet>
+                </div>
             </div>
         </div>
     );
