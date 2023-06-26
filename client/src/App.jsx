@@ -12,11 +12,13 @@ import RegistrationPage from "./pages/Registration-Page";
 import Page404 from "./pages/Page-404";
 import ForgetPasswordPage from "./pages/ForgetPassword-Page";
 import MasterLayout from "./components/MasterLayout/Master-Layout";
+import FullScreenLoader from "./components/MasterLayout/FullScreen-Loader";
 
 
 function App() {
   return (
       <Fragment>
+          <FullScreenLoader/>
           <BrowserRouter>
               <MasterLayout/>
               <Routes>
