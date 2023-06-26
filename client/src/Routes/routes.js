@@ -26,7 +26,7 @@ const router = createBrowserRouter([
                 element : <CreatePage></CreatePage>
             },
             {
-                path :"/all",
+                path :'/all',
                 element : <NewPage></NewPage>
             },
             {
@@ -40,29 +40,30 @@ const router = createBrowserRouter([
             {
                 path : '/cancel',
                 element : <CanceledPage></CanceledPage>
-            },
-            {
-                path :"/profile",
-                element : <ProfilePage></ProfilePage>
-            },
-            {
-                path : '/login',
-                element : <LoginPage></LoginPage>
-            },
-            {
-                path : '/registration',
-                element : <RegistrationPage></RegistrationPage>
-            },
-            {
-                path :"*",
-                element : <Page404></Page404>
-            },
-            {
-                path : '/forgetPassword',
-                element : <ForgetPasswordPage></ForgetPasswordPage>
-            },
+            }
         ]
-    }
+    },
+    {
+        path :'/profile',
+        element : <ProfilePage></ProfilePage>
+    },
+    {
+        path : '/login',
+        element : <LoginPage></LoginPage>
+    },
+    {
+        path : '/registration',
+        element : <RegistrationPage></RegistrationPage>
+    },
+    {
+        path :'*',
+        element : <Page404></Page404>
+    },
+    {
+        path : '/forgetPassword',
+        element : <ForgetPasswordPage></ForgetPasswordPage>
+    },
+
 ])
 
 export default router;
