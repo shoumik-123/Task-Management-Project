@@ -36,12 +36,12 @@ const routes = [
     },
     {
         path: '/complete',
-        name: 'Complete',
+        name: 'Completed',
         icon: FaCheckCircle,
     },
     {
         path: '/cancel',
-        name: 'Cancel',
+        name: 'Canceled',
         icon: FaRegTrashAlt,
     },
 ];
