@@ -51,7 +51,7 @@ const Canceled = () => {
                                     <FaRegCalendarAlt/> 27/06/2023
                                     <a className="icon-nav text-primary mx-1"><FaPen /></a>
                                     <a className="icon-nav text-danger mx-1"><FaRegClipboard /></a>
-                                    <a className="badge float-end bg-success">status</a>
+                                    <a className="badge float-end bg-danger">status</a>
                                 </p>
                             </div>
                         </motion.div>
