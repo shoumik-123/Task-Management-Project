@@ -2,7 +2,9 @@ import React, {Fragment, useRef} from 'react';
 import {Link} from "react-router-dom";
 import { motion } from 'framer-motion';
 import {ErrorToast, IsEmail, IsEmpty, IsMobile} from "../../helper/FormHelper";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import {RegistrationRequest} from "../../APIRequest/APIRequest";
 
 const Registration = () => {
     const inputAnimation = {
@@ -34,27 +36,31 @@ const Registration = () => {
         let password = passwordRef.value;
 
         if(IsEmpty(firstName)){
-            const msg = "Product Name"
-            ErrorToast(msg);
-            // ErrorToast("First Name Required !")
+            toast();
+            toast.warn('First Name required', {theme: "dark"});
         }
         else if(IsEmpty(lastName)){
-            ErrorToast("Last Name Required !")
+            toast.info("Last Name Required !", {theme: "dark"})
         }
 
         else if(!IsMobile(mobile)){
-            ErrorToast("Valid Mobile Required !")
-        }
-        else if(!IsEmail(email)){
-            ErrorToast("Valid Email Required !")
+            toast.info("Valid Mobile Required !", {theme: "dark"})
         }
 
-        else if(!IsEmpty(password)){
-            ErrorToast("Password Required !")
+        else if(!IsEmail(email)){
+            toast.info("Valid Email Required !", {theme: "dark"})
+        }
+
+        else if(IsEmpty(password)){
+            toast.info("Password Required !", {theme: "dark"})
         }
 
         else {
-            alert("Submit")
+            RegistrationRequest(firstName , lastName , mobile , email, password , "").then((result)=>{
+                if (result){
+                    //User k jei page e niye jabo
+                }
+            })
         }
 
     }
