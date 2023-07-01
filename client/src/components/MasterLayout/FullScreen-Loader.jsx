@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LoadingBar from 'react-top-loading-bar';
+import {useSelector} from "react-redux";
 
 const FullScreenLoader = () => {
     const [progress, setProgress] = useState(0);
@@ -12,6 +13,12 @@ const FullScreenLoader = () => {
         return () => clearInterval(interval);
     }, []);
 
+
+    // redux use
+    const loader = useSelector((state)=> state.settings.loader)   //redux
+
+
+
     return (
         <div>
             <div className="fullscreen-loader">
@@ -20,6 +27,7 @@ const FullScreenLoader = () => {
                     color="#3498db"
                     progress={progress}
                     onLoaderFinished={() => setProgress(0)}
+                    className={loader}
                 />
             </div>
         </div>

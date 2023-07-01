@@ -1,7 +1,7 @@
 import React, {Fragment, useRef} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { motion } from 'framer-motion';
-import {ErrorToast, IsEmail, IsEmpty, IsMobile} from "../../helper/FormHelper";
+import { IsEmail, IsEmpty, IsMobile} from "../../helper/FormHelper";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import {RegistrationRequest} from "../../APIRequest/APIRequest";
@@ -27,6 +27,8 @@ const Registration = () => {
 
 
     let firstNameRef , lastNameRef , mobileRef , emailRef , passwordRef= useRef()
+
+    const navigate = useNavigate();
 
     const onRegistration =()=>{
         let firstName = firstNameRef.value;
@@ -60,6 +62,7 @@ const Registration = () => {
             RegistrationRequest(firstName , lastName , mobile , email, password , "").then((result)=>{
                 if (result){
                     //User k jei page e niye jabo
+                    navigate('/login')
                 }
             })
         }
