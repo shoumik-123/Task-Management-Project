@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Login = () => {
+
+     let passRef , emailRef = useRef()
+    const SubmitLogin = ()=>{
+         let email = emailRef.value;
+         let password = passRef.value;
+
+
+    }
+
+
+
+
     const inputAnimation = {
         hidden: {
             width: "0",
@@ -29,11 +41,11 @@ const Login = () => {
                         <div className="card-body">
                             <motion.h5 initial="hidden" animate="show" exit="hidden"  variants={inputAnimation}>Sign In</motion.h5>
                             <br/>
-                            <input placeholder="User Email" type="email" className="form-control"/>
+                            <input ref={(input)=> emailRef=input} placeholder="User Email" type="email" className="form-control"/>
                             <br/>
-                            <input placeholder="User Password" type="password" className="form-control"/>
+                            <input ref={(input)=> passRef=input} placeholder="User Password" type="password" className="form-control"/>
                             <br/>
-                            <button className="btn w-100 btn-primary mb-5 animated fadeInUp">Next</button>
+                            <button onClick={SubmitLogin} className="btn w-100 btn-primary mb-5 animated fadeInUp">Next</button>
                             <div className="text-center">
                                 <Link to="/registration" className="text-decoration-none">Sign Up</Link>
                                 <br/>

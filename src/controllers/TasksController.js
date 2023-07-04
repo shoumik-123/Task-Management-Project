@@ -30,6 +30,7 @@ exports.deleteTask =(req,res)=>{
         });
 }
 
+
 exports.updateTaskStatus = (req, res) => {
     let id = req.params.id;
     let status = req.params.status;
@@ -56,8 +57,6 @@ exports.updateTaskStatus = (req, res) => {
     //     .then(updatedUser => console.log(updatedUser))
     //     .catch(err => console.log(err));
 }
-
-
 
 
 exports.listTaskByStatus =(req,res)=>{
