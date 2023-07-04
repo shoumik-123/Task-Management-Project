@@ -61,7 +61,6 @@ const Registration = () => {
             console.log("Ok")
             RegistrationRequest(firstName , lastName , mobile , email, password , "").then((result)=>{
                 if (result){
-                    //User k jei page e niye jabo
                     navigate('/login')
                 }
             })

@@ -1,6 +1,10 @@
 import React, {useRef} from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {ErrorToast, IsEmail, IsEmpty} from "../../helper/FormHelper";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import {LoginRequest} from "../../APIRequest/APIRequest";
 
 const Login = () => {
 
@@ -9,7 +13,22 @@ const Login = () => {
          let email = emailRef.value;
          let password = passRef.value;
 
+         if(!IsEmail(email)){
+             ErrorToast("Invalid Email")
+             {console.log(email)}
+         }
 
+         else if(IsEmpty(password)){
+             toast.info("Password Incorrect", {theme: "dark"})
+         }
+
+         else {
+             LoginRequest(email,password).then((result)=>{
+                 if(result===true){
+                     window.location.href="/"
+                 }
+             })
+         }
     }
 
 
@@ -45,7 +64,7 @@ const Login = () => {
                             <br/>
                             <input ref={(input)=> passRef=input} placeholder="User Password" type="password" className="form-control"/>
                             <br/>
-                            <button onClick={SubmitLogin} className="btn w-100 btn-primary mb-5 animated fadeInUp">Next</button>
+                            <button onClick={SubmitLogin} className="btn w-100 btn-primary mb-5 ">Next</button>
                             <div className="text-center">
                                 <Link to="/registration" className="text-decoration-none">Sign Up</Link>
                                 <br/>
@@ -53,6 +72,7 @@ const Login = () => {
                             </div>
                         </div>
                     </motion.div>
+                    <ToastContainer/>
                 </div>
             </div>
         </div>
