@@ -46,14 +46,14 @@
 
 
 import { RouterProvider } from 'react-router-dom';
-import router from "./Routes/routes";
+import AppRouter from "./Routes/routes";
 import FullScreenLoader from "./components/MasterLayout/FullScreen-Loader";
 
 
 function App() {
     return (
         <div>
-            <RouterProvider router={router}></RouterProvider>
+            <RouterProvider router={AppRouter}></RouterProvider>
             <FullScreenLoader/>
         </div>
     );

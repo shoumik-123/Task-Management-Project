@@ -19,7 +19,7 @@ const Login = () => {
          }
 
          else if(IsEmpty(password)){
-             toast.info("Password Incorrect", {theme: "dark"})
+             ErrorToast("Password Incorrect")
          }
 
          else {

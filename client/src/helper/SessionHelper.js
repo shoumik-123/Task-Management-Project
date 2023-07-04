@@ -9,9 +9,9 @@ class SessionHelper{
     setUserDetails(UserDetails){
         localStorage.setItem("UserDetails" ,JSON.stringify(UserDetails))
     }
-    setUserDetails(UserDetails){
+    getUserDetails(UserDetails){
         return JSON.parse(localStorage.getItem("UserDetails"))
     }
 }
 
-export const {setToken , getToken , setUserDetails } = new SessionHelper();
+export const {setToken , getToken , setUserDetails ,getUserDetails} = new SessionHelper();
